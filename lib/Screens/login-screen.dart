@@ -46,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 const Center(
                   child: Text(
-                    'Scholar Chat',
+                    'Chat App',
                     style: TextStyle(
                       fontSize: 32,
                       color: Colors.white,
@@ -97,8 +97,6 @@ class _LoginPageState extends State<LoginPage> {
                       setState(() {});
                       try {
                         await logInUser(email: email, password: password);
-                        print(userCredential!.user!.uid);
-                        print(userCredential!.user!.email);
                         showSnackBar(context, 'you are loged in ');
                         Navigator.pushNamed(context, ChatPage.id,arguments:email );
                       } catch (ex) {
