@@ -1,3 +1,4 @@
+import 'package:chatapp/Screens/chat-screen.dart';
 import 'package:chatapp/Screens/regist-screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,7 @@ import '../Custom Widgets/snack-bar.dart';
 import '../constans.dart';
 
 class LoginPage extends StatefulWidget {
- const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({Key? key}) : super(key: key);
   static String id = 'LoginPage';
 
   @override
@@ -43,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
                   'assets/images/scholar.png',
                   height: 100,
                 ),
-              const  Center(
+                const Center(
                   child: Text(
                     'Scholar Chat',
                     style: TextStyle(
@@ -72,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 CustomFormTextField(
                   onChanged: (data) {
-                   email  = data;
+                    email = data;
                   },
                   hintText: 'Email',
                 ),
@@ -93,22 +94,20 @@ class _LoginPageState extends State<LoginPage> {
                     if (formKey.currentState!.validate()) {
                       isLoading = true;
 
-                      setState(() {
-                      });
+                      setState(() {});
                       try {
                         await logInUser(email: email, password: password);
                         print(userCredential!.user!.uid);
                         print(userCredential!.user!.email);
                         showSnackBar(context, 'you are loged in ');
-                        Navigator.pushNamed(context, RegisterPage.id);
+                        Navigator.pushNamed(context, ChatPage.id,arguments:email );
                       } catch (ex) {
                         showSnackBar(context, 'there was an error');
                         print(ex);
                       }
                       isLoading = false;
 
-                      setState(() {
-                      });
+                      setState(() {});
                     } else {}
                   },
                   text: 'LOGIN',

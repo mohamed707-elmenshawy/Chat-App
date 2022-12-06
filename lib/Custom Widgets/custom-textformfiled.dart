@@ -4,18 +4,20 @@ class CustomFormTextField extends StatelessWidget {
   CustomFormTextField(
       {this.hintText,
       this.onChanged,
+      this.onSubmitted,
       this.obscureText = false,
       this.controller});
 
   Function(String)? onChanged;
   String? hintText;
   var controller;
-
+  Function(String)? onSubmitted;
   bool? obscureText;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onFieldSubmitted: onSubmitted,
       controller: controller,
       obscureText: obscureText!,
       validator: (data) {
@@ -27,7 +29,7 @@ class CustomFormTextField extends StatelessWidget {
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: TextStyle(
-          color: Colors.white,
+          color: Colors.green,
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
